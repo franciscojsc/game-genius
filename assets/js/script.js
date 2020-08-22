@@ -35,7 +35,7 @@ let lightColor = (element, number) => {
   }, number);
 };
 
-//checa se os botôes clicados são os mesmos da ordem gerada no jogo
+//checa se os botões clicados são os mesmos da ordem gerada no jogo
 let checkOrder = () => {
   for (let i in clickedOrder) {
     if (clickedOrder[i] != order[i]) {
@@ -44,8 +44,10 @@ let checkOrder = () => {
     }
   }
   if (clickedOrder.length == order.length) {
-    alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`);
-    nextLevel();
+    updateScore(score);
+    setTimeout(() => {
+      nextLevel();
+    }, 200);
   }
 };
 
@@ -73,6 +75,12 @@ let createColorElement = (color) => {
   }
 };
 
+//exibi a pontuação na tela
+let updateScore = (point) => {
+  let score = document.querySelector('#score');
+  score.textContent = `Pontuação: ${point}`;
+};
+
 //função para proximo nível do jogo
 let nextLevel = () => {
   score++;
@@ -94,7 +102,7 @@ let gameOver = () => {
 let playGame = () => {
   alert('Bem vindo ao Genius! Iniciando novo jogo!');
   score = 0;
-
+  updateScore(score);
   nextLevel();
 };
 
