@@ -26,6 +26,28 @@ body {
   height: 300px;
 }
 
+@media (min-width: 600px) {
+  body {
+    font-size: 25px;
+  }
+
+  .genius {
+    width: 500px;
+    height: 500px;
+  }
+}
+
+@media (min-width: 900px) {
+  body {
+    font-size: 28px;
+  }
+
+  .genius {
+    width: 600px;
+    height: 600px;
+  }
+}
+
 .rotation {
   animation: 800ms alternate 0s backwards animationRotation;
 }
