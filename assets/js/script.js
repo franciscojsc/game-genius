@@ -12,6 +12,9 @@ const red = document.querySelector('.red');
 const green = document.querySelector('.green');
 const yellow = document.querySelector('.yellow');
 
+const genius = document.querySelector('.genius');
+const init = document.querySelector('#play');
+
 //cria ordem aleatória de cores
 let shuffleOrder = () => {
   let colorOrder = Math.floor(Math.random() * 4);
@@ -40,7 +43,7 @@ let checkOrder = () => {
   for (let i in clickedOrder) {
     if (clickedOrder[i] != order[i]) {
       gameOver();
-      break;
+      return;
     }
   }
   if (clickedOrder.length == order.length) {
@@ -81,36 +84,55 @@ let updateScore = (point) => {
   score.textContent = `Pontuação: ${point}`;
 };
 
+let reset = () => {
+  order = [];
+  clickedOrder = [];
+  score = 0;
+};
+
 //função para proximo nível do jogo
 let nextLevel = () => {
   score++;
   shuffleOrder();
 };
 
-//função para game over
-let gameOver = () => {
-  alert(
-    `Pontuação: ${score}!\nVocê perdeu o jogo!\nClique em OK para iniciar um novo jogo`
-  );
-  order = [];
-  clickedOrder = [];
-
-  playGame();
-};
-
-//função de inicio do jogo
-let playGame = () => {
-  alert('Bem vindo ao Genius! Iniciando novo jogo!');
-  score = 0;
-  updateScore(score);
-  nextLevel();
-
-  //eventos de clique para as cores
+//adiciona eventos de clique para as cores
+let addButtonColorClick = () => {
   green.onclick = () => click(0);
   red.onclick = () => click(1);
   yellow.onclick = () => click(2);
   blue.onclick = () => click(3);
 };
 
+//remove eventos de clique para as cores
+let removeButtonColorClick = () => {
+  green.onclick = () => {};
+  red.onclick = () => {};
+  yellow.onclick = () => {};
+  blue.onclick = () => {};
+};
+
+//função para game over
+let gameOver = () => {
+  reset();
+  removeButtonColorClick();
+};
+
+//função de inicio do jogo
+let playGame = () => {
+  genius.classList.add('rotation');
+  reset();
+  updateScore(0);
+
+  setTimeout(() => {
+    genius.classList.remove('rotation');
+    nextLevel();
+    addButtonColorClick();
+  }, 1000);
+};
+
 //inicio do jogo
-playGame();
+init.addEventListener('click', () => {
+  playGame();
+  init.src = './assets/img/reload.svg';
+});

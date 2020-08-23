@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  background-color: #cfcfcf;
+  background-color: rgb(245, 244, 224);
   font-size: 20px;
   font-family: 'Press Start 2P', cursive;
 }
@@ -26,12 +26,40 @@ body {
   height: 300px;
 }
 
+.rotation {
+  animation: 800ms alternate 0s backwards animationRotation;
+}
+
+@keyframes animationRotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.control,
 .board {
   position: fixed;
-  right: 0;
-  top: 0;
   padding: 0;
   margin: 0;
+}
+
+.control {
+  left: 0;
+  bottom: 0;
+}
+
+.control img {
+  width: 2em;
+  height: 2em;
+  margin: 10px;
+}
+
+.board {
+  right: 0;
+  top: 0;
 }
 
 .board h2 {
