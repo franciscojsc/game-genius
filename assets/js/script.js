@@ -14,6 +14,7 @@ const yellow = document.querySelector('.yellow');
 
 const genius = document.querySelector('.genius');
 const init = document.querySelector('#play');
+const status = document.querySelector('.status');
 
 //cria ordem aleatória de cores
 let shuffleOrder = () => {
@@ -115,6 +116,7 @@ let removeButtonColorClick = () => {
 //função para game over
 let gameOver = () => {
   reset();
+  status.innerHTML = '<h2>Game Over</h2>';
   removeButtonColorClick();
 };
 
@@ -135,4 +137,5 @@ let playGame = () => {
 init.addEventListener('click', () => {
   playGame();
   init.src = './assets/img/reload.svg';
+  status.innerHTML = '';
 });

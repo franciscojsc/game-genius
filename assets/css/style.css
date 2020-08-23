@@ -40,7 +40,8 @@ body {
 }
 
 .control,
-.board {
+.board,
+.status {
   position: fixed;
   padding: 0;
   margin: 0;
@@ -66,6 +67,28 @@ body {
   margin: 0;
   padding: 10px;
   font-size: 1em;
+}
+
+.status {
+  right: 0;
+  bottom: 0;
+}
+
+.status h2 {
+  margin: 0;
+  padding: 10px;
+  font-size: 1.2em;
+  color: rgb(255, 49, 49);
+  animation: 800ms alternate 0s infinite animationPulse;
+}
+
+@keyframes animationPulse {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .blue {
